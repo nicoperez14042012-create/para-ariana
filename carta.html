@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Para Ariana 💌</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    .envelope {
+      width: 200px;
+      height: 130px;
+      background: #fff;
+      position: relative;
+      cursor: pointer;
+      animation: float 2s infinite ease-in-out;
+      border-radius: 8px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .envelope::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, transparent 50%, #f5f5f5 50%);
+      clip-path: polygon(0 0, 100% 0, 50% 50%);
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+    .hint {
+      margin-top: 15px;
+      color: #fff;
+      font-size: 16px;
+    }
+
+    .letter {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      background: #fff;
+      width: 80%;
+      max-width: 500px;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      transition: transform 0.5s ease;
+      z-index: 10;
+    }
+
+    .letter.show {
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .letter h2 {
+      margin-top: 0;
+      color: #ee6c7d;
+    }
+
+    .letter p {
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .close {
+      margin-top: 20px;
+      background: #ee6c7d;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+  
+    /* Corazones flotando */
+    .heart {
+      position: fixed;
+      bottom: -20px;
+      font-size: 20px;
+      animation: rise 6s linear infinite;
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    @keyframes rise {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
+    }
+
+    /* Fotos flotando */
+    .photo {
+      position: absolute;
+      width: 90px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+      animation: floatPhoto 4s ease-in-out infinite;
+    }
+
+    .photo.left { left: -110px; top: 40px; }
+    .photo.right { right: -110px; bottom: 40px; }
+
+    @keyframes floatPhoto {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="envelope" onclick="openLetter()"></div>
+    <div class="hint">presiona la cartita 💌</div>
+  </div>
+
+  <div class="letter" id="letter">
+    <img src="./foto1.jpg" class="photo left" />
+<img src="./foto2.jpg" class="photo right" />
+   <h2>Felices 6 meses, mi princesa🥺💗</h2>
+ <p> 
+el 17 cumplimos 6 meses juntos y de verdad no puedo creer lo rápido que pasó el tiempo. Desde el primer día que llegaste a mi vida, todo se volvió más bonito y más especial.
+ </p>
+
+ <p>
+ Gracias por cada risa, cada rato juntitos y por estar conmigo en los días buenos como en los malos contigo he aprendido a amar mejor y a valorar cada detalle y lo mejor de eso esq solo te voy a amar de esa forma a ti 
+</p>
+
+ <p> 
+Estos 6 meses contigo han sido increíbles y solo espero que vengan muchos mas meses llenos de momentos lindos y mucho amor siempre me haces muy feliz y me siento muy afortunado de tenerte a mi lado
+ </p>
+
+ <p>
+ Te awo muchisimo💗🥺
+ </p>
+    <button class="close" onclick="closeLetter()">Cerrar</button>
+  </div>
+
+  <script>
+    function openLetter() {
+      document.getElementById('letter').classList.add('show');
+    }
+
+    function closeLetter() {
+      document.getElementById('letter').classList.remove('show');
+    }
+  
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.innerText = '💗';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.fontSize = (Math.random() * 10 + 15) + 'px';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }
+
+    setInterval(createHeart, 400);
+  </script>
+
+</body>
+</html>
+
